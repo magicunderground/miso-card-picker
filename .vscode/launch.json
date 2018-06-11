@@ -7,13 +7,10 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Card Picker",
+            "name": "Main Process",
             "cwd": "${workspaceFolder}",
-            //"preLaunchTask": "build",
+            "preLaunchTask": "build",
             "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron"
-            },
             "program": "${workspaceFolder}\\src\\index.ts",
             "sourceMaps": true,
             "outFiles": [
@@ -21,17 +18,14 @@
             ]
         },
         {
-            "name": "Debug Card Picker",
+            "name": "Renderer Process",
             "type": "chrome",
             "request": "launch",
-            //"preLaunchTask": "build",
+            "preLaunchTask": "build",
             "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron"
-            },
             "sourceMaps": true,
             "runtimeArgs": [
-                "${workspaceFolder}\\src\\index.ts",
+                "${workspaceFolder}",
                 "--remote-debugging-port=9222"
             ],
             "webRoot": "${workspaceFolder}"
