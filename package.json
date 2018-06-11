@@ -4,7 +4,7 @@
   "description": "Card Picker Client for Miso Display Server",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "electron dist/index.js"
+    "start": "electron ."
   },
   "keywords": [
     "mtg",
@@ -14,11 +14,13 @@
   "author": "Mike Wallio",
   "license": "MIT",
   "devDependencies": {
+    "@types/request": "^2.47.0",
     "del": "^3.0.0",
     "electron": "2.0.2",
     "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^4.0.2",
+    "request": "^2.87.0",
     "scryfall-sdk": "^1.2.0",
     "typescript": "^3.0.0-dev.20180609"
   },
