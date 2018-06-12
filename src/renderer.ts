@@ -1,91 +1,76 @@
-import { Cards } from 'scryfall-sdk'
-import { AppData } from './AppData'
-import { post } from 'request'
+import { Cards } from 'scryfall-sdk';
+import { FileSystemStorage } from './Storage/FileSystemStorage';
+import { File } from './IO/File';
+import { remote } from 'electron';
+import { Throttler } from './Utilities/Throttler';
+import { ServiceProxy } from './Service/ServiceProxy';
 
-let cardNameTxt = document.getElementById('cardName') as HTMLInputElement
-let searchBtn = document.getElementById('search') as HTMLInputElement
-let clearBtn = document.getElementById('clear') as HTMLInputElement
-let suggestionList = document.getElementById('cardSuggestions') as HTMLDataListElement
-let display = document.getElementById('cardDisplay') as HTMLImageElement
+let cardNameTxt = document.getElementById('cardName') as HTMLInputElement;
+let searchBtn = document.getElementById('search') as HTMLInputElement;
+let clearBtn = document.getElementById('clear') as HTMLInputElement;
+let suggestionList = document.getElementById('cardSuggestions') as HTMLDataListElement;
+let display = document.getElementById('cardDisplay') as HTMLImageElement;
 
-let config = new AppData('config')
+let serviceProxy = new ServiceProxy(new FileSystemStorage(new File(remote.app.getPath('userData') + 'config.json')));
 
-let lastPop = Date.now()
-
-function search(name: string){
-    Cards.byName(name, true).then(res => {
-        if (res.image_uris) {
-            if (display) {
-                display.src = res.image_uris.normal
-
-                let url = config.get('url') as string
-                let user = config.get('user') as string
-                let key = config.get('streamkey') as string
-
-                let target = url + user
-                if (res.multiverse_ids) {
-                    post(target, { json: { 'streamkey': key, 'cardid': res.multiverse_ids[0], 'duration': 60 } })
-                }
-            }
+async function search(name: string) {
+    let card = await Cards.byName(name, true);
+    if (card.image_uris) {
+        if (display) {
+            display.src = card.image_uris.normal;
         }
-    })
+
+        await serviceProxy.showCard(card);
+    }
 }
 
-function clearDisplay() {
-    let url = config.get('url') as string
-    let user = config.get('user') as string
-    let key = config.get('streamkey') as string
+async function clearDisplay() {
+    display.src = '';
+    cardNameTxt.value = '';
 
-    let target = url + user
-    display.src = ''
-    cardNameTxt.value = ''
-
-    post(target, { json: { 'streamkey': key, 'cardid': '', 'duration': 0 } })
+    await serviceProxy.clearDisplay();
 }
 
 if (searchBtn) {
     searchBtn.addEventListener('click', () => {
         if (cardNameTxt && cardNameTxt.value) {
-            search(cardNameTxt.value)
+            search(cardNameTxt.value);
         }
-    })
+    });
 }
 
 if (clearBtn) {
-    clearBtn.addEventListener('click', clearDisplay)
+    clearBtn.addEventListener('click', clearDisplay);
 }
 
 function clearChildren(item : HTMLElement) {
-    while (item.children.length > 0) item.removeChild(item.children[0])
+    while (item.children.length > 0) item.removeChild(item.children[0]);
 }
 
 if (cardNameTxt) {
-    cardNameTxt.addEventListener('keypress', (evt) => {
+    let autoCompleteThrottler = new Throttler(4);
+    cardNameTxt.addEventListener('keypress', async (evt) => {
         if (evt.key == 'Enter') { 
-            evt.preventDefault()
+            evt.preventDefault();
             if (cardNameTxt.value.length > 0) {
-                search(cardNameTxt.value)
+                await search(cardNameTxt.value);
             } else {
-                clearDisplay()
+                await clearDisplay();
             }
         } else {
             if (cardNameTxt.value.length < 4 && suggestionList.children.length > 0) {
-                clearChildren(suggestionList)
-            } else if (cardNameTxt.value.length > 3 && (Date.now() - lastPop) > 250) {
-                lastPop = Date.now()
-                if (suggestionList) {
-                    Cards.autoCompleteName(cardNameTxt.value).then(names => {
-                        clearChildren(suggestionList)
-                        names.forEach(name => {
-                            if (!suggestionList.children.namedItem(name)) {
-                                let opt = document.createElement('option')
-                                opt.value = name
-                                suggestionList.appendChild(opt)
-                            }
-                        })
-                    })
-                }
+                clearChildren(suggestionList);
+            } else if (cardNameTxt.value.length > 3 && suggestionList) {
+                await autoCompleteThrottler.tryPerformAction(async () => {
+                    clearChildren(suggestionList);
+                    let names = await Cards.autoCompleteName(cardNameTxt.value);
+                    names.forEach(name => {
+                        let opt = document.createElement('option');
+                        opt.value = name;
+                        suggestionList.appendChild(opt);
+                    });
+                });
             }
         }
-    })
+    });
 }
