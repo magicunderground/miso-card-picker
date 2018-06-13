@@ -10,11 +10,11 @@
             "name": "Main Process",
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "build",
-            "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron",
-            "program": "${workspaceFolder}\\src\\index.ts",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "program": "${workspaceFolder}/src/index.ts",
             "sourceMaps": true,
             "outFiles": [
-                "${workspaceFolder}\\dist\\*"
+                "${workspaceFolder}/dist/*"
             ]
         },
         {
@@ -22,7 +22,7 @@
             "type": "chrome",
             "request": "launch",
             "preLaunchTask": "build",
-            "runtimeExecutable": "${workspaceFolder}\\node_modules\\.bin\\electron",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
             "sourceMaps": true,
             "runtimeArgs": [
                 "${workspaceFolder}",
