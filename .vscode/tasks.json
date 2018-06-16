@@ -5,19 +5,17 @@
     "tasks": [
         {
             "label": "build",
-            "type": "gulp",
-            "task": "build",
+            "type": "shell",
+            "command": "gulp build",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "clean",
-            "type": "gulp",
-            "task": "clean",
-            "problemMatcher": []
+            "type": "shell",
+            "command": "gulp clean"
         }
     ]
 }

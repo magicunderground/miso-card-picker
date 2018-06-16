@@ -14,6 +14,9 @@
   "author": "Mike Wallio",
   "license": "MIT",
   "devDependencies": {
+    "@types/del": "^3.0.1",
+    "@types/gulp": "^4.0.5",
+    "@types/gulp-sourcemaps": "0.0.32",
     "@types/request": "^2.47.0",
     "bootstrap": "^4.1.1",
     "del": "^3.0.0",
@@ -26,7 +29,10 @@
     "prex": "^0.4.2",
     "request": "^2.87.0",
     "scryfall-sdk": "^1.2.0",
-    "typescript": "^3.0.0-dev.20180609"
+    "ts-node": "^6.1.1",
+    "typescript": "^3.0.0-dev.20180609",
+    "typescript-register": "^1.1.0",
+    "typescript-require": "^0.2.10"
   },
   "dependencies": {}
 }
