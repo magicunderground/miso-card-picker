@@ -10,12 +10,18 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [
+                "$tsc"
+            ]
         },
         {
             "label": "clean",
             "type": "shell",
-            "command": "gulp clean"
+            "command": "gulp clean",
+            "problemMatcher": [
+                "$tsc"
+            ]
         }
     ]
 }
