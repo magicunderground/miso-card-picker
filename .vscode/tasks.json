@@ -12,6 +12,12 @@
                 "isDefault": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "gulp",
+            "task": "clean",
+            "problemMatcher": []
         }
     ]
 }
