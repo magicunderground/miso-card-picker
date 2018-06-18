@@ -1,9 +1,9 @@
 import { Cards } from 'scryfall-sdk';
-import { FileSystemStorage } from './Storage/FileSystemStorage';
-import { File } from './IO/File';
+import { FileSystemStorage } from './lib/Storage/FileSystemStorage';
+import { File } from './lib/IO/File';
 import { remote } from 'electron';
-import { Throttler } from './Utilities/Throttler';
-import { ServiceProxy } from './Service/ServiceProxy';
+import { Throttler } from './lib/Utilities/Throttler';
+import { ServiceProxy } from './lib/Service/ServiceProxy';
 
 let cardNameTxt = document.getElementById('cardName') as HTMLInputElement;
 let searchBtn = document.getElementById('search') as HTMLInputElement;
