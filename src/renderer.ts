@@ -11,7 +11,37 @@ let clearBtn = document.getElementById('clear') as HTMLInputElement;
 let suggestionList = document.getElementById('cardSuggestions') as HTMLDataListElement;
 let display = document.getElementById('cardDisplay') as HTMLImageElement;
 
-let serviceProxy = new ServiceProxy(new FileSystemStorage(new File(remote.app.getPath('userData') + 'config.json')));
+
+let configSettings = new FileSystemStorage(new File(remote.app.getPath('userData') + 'config.json'));
+
+let serviceProxy = new ServiceProxy(configSettings);
+
+let urlTxt = document.getElementById('url') as HTMLInputElement;
+let userIdTxt = document.getElementById('user-id') as HTMLInputElement;
+let streamKeyTxt = document.getElementById('stream-key') as HTMLInputElement;
+
+let submitBtn = document.getElementById('settings-submit') as HTMLInputElement;
+
+if (configSettings.get('url')) {
+    urlTxt.value = configSettings.get('url');
+}
+
+if (configSettings.get('user')) {
+    userIdTxt.value = configSettings.get('user');
+}
+
+if (configSettings.get('streamkey')) {
+    streamKeyTxt.value = configSettings.get('streamkey');
+}
+
+if (submitBtn) {
+    submitBtn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        configSettings.set('url', urlTxt.value);
+        configSettings.set('user', userIdTxt.value);
+        configSettings.set('streamkey', streamKeyTxt.value);
+    });
+}
 
 async function search(name: string) {
     let card = await Cards.byName(name, true);
