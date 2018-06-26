@@ -17,12 +17,12 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.0",
+    "del": "^3.0.0",
     "electron": "^2.0.3",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0-alpha.2",
     "scryfall-sdk": "^1.2.1",
     "source-map-loader": "^0.2.3",
-    "typescript": "^2.9.2",
-    "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8",
-    "webpack-command": "^0.3.0"
+    "typescript": "^2.9.2"
   }
 }
