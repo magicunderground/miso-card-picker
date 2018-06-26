@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Main Process",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "program": "${workspaceFolder}/src/index.ts",
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceFolder}/dist/*"
+            ]
+        },
+        {
+            "name": "Renderer Process",
+            "type": "chrome",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+            "sourceMaps": true,
+            "runtimeArgs": [
+                "${workspaceFolder}",
+                "--remote-debugging-port=9222"
+            ],
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
