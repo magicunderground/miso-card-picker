@@ -1,12 +1,15 @@
 import * as React from 'react';
 
 export interface CardProps { 
-    name: string;
-    set: string;
+    name: string
+    img_uri: string
 }
 
 export class Card extends React.Component<CardProps, {}> {
     render() {
-        return <h1>{this.props.name} from {this.props.set}</h1>;
+        return (
+        <div>
+            <img src={this.props.img_uri} alt={this.props.name} />
+        </div>)
     }
 }

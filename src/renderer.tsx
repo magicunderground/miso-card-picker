@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Card } from './components/Card';
+import { CardDisplay } from './components/CardDisplay';
 
 ReactDOM.render(
-    <Card name='Goblin Guide' set='ZEN' />,
+    <CardDisplay />,
     document.getElementById('main')
 )

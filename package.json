@@ -24,7 +24,8 @@
     "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.2",
-    "scryfall-sdk": "^1.2.1",
+    "prex": "^0.4.2",
+    "scryfall": "^0.9.7",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.9.2"
   }
