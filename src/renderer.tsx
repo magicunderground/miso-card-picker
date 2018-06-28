@@ -1,7 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import { CardDisplay } from './components/CardDisplay';
+import { CardDisplay } from './components/CardDisplay'
 
 ReactDOM.render(
     <CardDisplay />,
