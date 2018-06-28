@@ -10,19 +10,19 @@ export interface CardDisplayState {
 }
 
 export class CardDisplay extends React.Component<{}, CardDisplayState> {
-    constructor() {
-        super({})
+    constructor(props: any) {
+        super(props)
         this.state = {
-            name: "",
-            img_uri: ""
+            name: '',
+            img_uri: ''
         }
     }
 
     displayCard = async (cardName: string) => {
-        if (cardName == "") {
+        if (cardName == '') {
             this.setState({
-                name: "",
-                img_uri: ""
+                name: '',
+                img_uri: ''
             })
         } else if (cardName != this.state.name) {
             let card = await scryfall.getCardByName(cardName, true)
