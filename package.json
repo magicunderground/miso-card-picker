@@ -1,38 +1,30 @@
 {
   "name": "miso-card-picker",
   "version": "1.0.0",
-  "description": "Card Picker Client for Miso Display Server",
+  "description": "Card Picker for miso display server",
   "main": "./dist/index.js",
+  "repository": "https://github.com/magicunderground/miso-card-picker.git",
+  "author": "Mike Wallio",
+  "license": "MIT",
   "scripts": {
     "start": "electron ."
   },
-  "keywords": [
-    "mtg",
-    "miso",
-    "magic"
-  ],
-  "author": "Mike Wallio",
-  "license": "MIT",
+  "dependencies": {
+    "@types/react": "^16.4.2",
+    "@types/react-dom": "^16.0.6",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
   "devDependencies": {
-    "@types/del": "^3.0.1",
-    "@types/gulp": "^4.0.5",
-    "@types/gulp-sourcemaps": "0.0.32",
-    "@types/request": "^2.47.0",
-    "bootstrap": "^4.1.1",
+    "awesome-typescript-loader": "^5.2.0",
     "del": "^3.0.0",
-    "electron": "2.0.2",
+    "electron": "^2.0.3",
     "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-typescript": "^4.0.2",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.3",
+    "gulp-typescript": "^5.0.0-alpha.2",
     "prex": "^0.4.2",
-    "request": "^2.87.0",
-    "scryfall-sdk": "^1.2.0",
-    "ts-node": "^6.1.1",
-    "typescript": "^3.0.0-dev.20180609",
-    "typescript-register": "^1.1.0",
-    "typescript-require": "^0.2.10"
-  },
-  "dependencies": {}
+    "scryfall": "^0.9.7",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.9.2"
+  }
 }
