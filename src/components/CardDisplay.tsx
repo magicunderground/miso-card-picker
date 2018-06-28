@@ -1,8 +1,8 @@
-import * as React from 'react';
-import * as scryfall from 'scryfall';
+import * as React from 'react'
+import * as scryfall from 'scryfall'
 
-import { Card } from './Card';
-import { CardPickerForm } from './CardPickerForm';
+import { Card } from './Card'
+import { CardPickerForm } from './CardPickerForm'
 
 export interface CardDisplayState {
     name: string

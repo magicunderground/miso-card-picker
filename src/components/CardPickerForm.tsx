@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as scryfall from 'scryfall';
-import { Semaphore } from 'prex';
+import * as React from 'react'
+import * as scryfall from 'scryfall'
+import { Semaphore } from 'prex'
 
 export interface CardPickerFormProps {
     onSubmit?: FunctionStringCallback
