@@ -16,12 +16,16 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.3",
     "awesome-typescript-loader": "^5.2.0",
+    "chai": "^4.1.2",
     "del": "^3.0.0",
     "electron": "^2.0.3",
+    "enzyme-adapter-react-16": "^1.1.1",
     "gulp": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-typescript": "^5.0.0-alpha.2",
+    "mocha": "^5.2.0",
     "prex": "^0.4.2",
     "scryfall": "^0.9.7",
     "source-map-loader": "^0.2.3",
