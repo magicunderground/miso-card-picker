@@ -1,9 +1,9 @@
 import * as React from 'react'
-import * as scryfall from 'scryfall'
 import { Semaphore } from 'prex'
 
 export interface CardPickerFormProps {
-    onSubmit?: FunctionStringCallback
+    onSubmit?: (value: string) => void
+    autocomplete: (value: string) => Promise<string[]>
 }
 
 export interface CardPickerFormState {
@@ -34,7 +34,7 @@ export class CardPickerForm extends React.Component<CardPickerFormProps, CardPic
         await this.lock.wait()
         try {
             if (Date.now() - this.lastUpdate > 100 && current.length > 2) {
-                let names = await scryfall.autocomplete(current)
+                let names = await this.props.autocomplete(current)
                 this.setState({
                     cardName: current,
                     suggestions: names,
