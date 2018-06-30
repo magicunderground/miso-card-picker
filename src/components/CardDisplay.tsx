@@ -1,45 +1,46 @@
 import * as React from 'react'
-import * as scryfall from 'scryfall'
 
 import { Card } from './Card'
 import { CardPickerForm } from './CardPickerForm'
+import { CardInfo } from '../lib/CardInfo'
 
-export interface CardDisplayState {
-    name: string
-    img_uri: string
+export interface CardDisplayProps {
+    getCard: (cardName: string) => Promise<CardInfo>
+    autocomplete: (value: string) => Promise<string[]>
+    onSubmit?: (card: CardInfo) => Promise<void>
 }
 
-export class CardDisplay extends React.Component<{}, CardDisplayState> {
-    constructor(props: any) {
+export interface CardDisplayState {
+    currentCard: CardInfo
+}
+
+export class CardDisplay extends React.Component<CardDisplayProps, CardDisplayState> {
+    constructor(props: CardDisplayProps) {
         super(props)
         this.state = {
-            name: '',
-            img_uri: ''
+            currentCard: {
+                name: '',
+                img_uri: ''
+            }
         }
     }
 
     displayCard = async (cardName: string) => {
-        if (cardName == '') {
-            this.setState({
-                name: '',
-                img_uri: ''
-            })
-        } else if (cardName != this.state.name) {
-            let card = await scryfall.getCardByName(cardName, true)
-            if (card.image_uris) {
-                this.setState({
-                    name: cardName,
-                    img_uri: card.image_uris.normal
-                })
-            }
+        let info = await this.props.getCard(cardName)
+        this.setState({
+            currentCard: info
+        })
+
+        if (this.props.onSubmit) {
+            this.props.onSubmit(info)
         }
     }
 
     render() {
         return(
             <div>
-                <CardPickerForm onSubmit={this.displayCard} autocomplete={scryfall.autocomplete} />
-                <Card name={this.state.name} img_uri={this.state.img_uri} />
+                <CardPickerForm onSubmit={this.displayCard} autocomplete={this.props.autocomplete} />
+                <Card name={this.state.currentCard.name} img_uri={this.state.currentCard.img_uri} />
             </div>
         )
     }

@@ -12,7 +12,7 @@ export interface CardPickerFormState {
 
 export class CardPickerForm extends React.Component<CardPickerFormProps, CardPickerFormState>{
 
-    constructor(props: CardPickerFormProps) {
+    constructor(props: any) {
         super(props)
         this.state = {
             cardName: '',
@@ -22,8 +22,9 @@ export class CardPickerForm extends React.Component<CardPickerFormProps, CardPic
 
     handleSubmit = (evt: React.FormEvent) => {
         evt.preventDefault()
-        if (this.props.onSubmit)
+        if (this.props.onSubmit) {
             this.props.onSubmit(this.state.cardName)
+        }
     }
 
     onChange = async (evt: React.FormEvent) => {
