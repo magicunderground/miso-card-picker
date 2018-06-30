@@ -41,6 +41,6 @@ export class CardDisplay extends React.Component<{}, CardDisplayState> {
                 <CardPickerForm onSubmit={this.displayCard} autocomplete={scryfall.autocomplete} />
                 <Card name={this.state.name} img_uri={this.state.img_uri} />
             </div>
-        );
+        )
     }
 }

@@ -20,6 +20,17 @@
             "type": "gulp",
             "task": "clean",
             "problemMatcher": []
+        },
+        {
+            "label": "test",
+            "type": "npm",
+            "script": "test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [
+            ]
         }
     ]
 }
