@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Semaphore } from 'prex'
 
 export interface CardPickerFormProps {
     onSubmit?: (value: string) => void
@@ -12,10 +11,8 @@ export interface CardPickerFormState {
 }
 
 export class CardPickerForm extends React.Component<CardPickerFormProps, CardPickerFormState>{
-    private lock = new Semaphore(1)
-    private lastUpdate = 0
 
-    constructor(props: CardPickerFormProps) {
+    constructor(props: any) {
         super(props)
         this.state = {
             cardName: '',
@@ -25,31 +22,18 @@ export class CardPickerForm extends React.Component<CardPickerFormProps, CardPic
 
     handleSubmit = (evt: React.FormEvent) => {
         evt.preventDefault()
-        if (this.props.onSubmit)
+        if (this.props.onSubmit) {
             this.props.onSubmit(this.state.cardName)
+        }
     }
 
     onChange = async (evt: React.FormEvent) => {
         let current = (evt.target as HTMLFormElement).value as string
-        await this.lock.wait()
-        try {
-            if (Date.now() - this.lastUpdate > 100 && current.length > 2) {
-                let names = await this.props.autocomplete(current)
-                this.setState({
-                    cardName: current,
-                    suggestions: names,
-                })
-
-                this.lastUpdate = Date.now()
-            }
-
-            this.setState(prev => ({
-                cardName: current,
-                suggestions: prev.suggestions
-            }))
-        } finally {
-            this.lock.release()
-        }
+        let names = await this.props.autocomplete(current)
+        this.setState({
+            cardName: current,
+            suggestions: names,
+        })
     }
 
     render() {

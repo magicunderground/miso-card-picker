@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 
-let cardWindow = null;
+let cardWindow = null
 
 app.on('ready', () => {
     cardWindow = new BrowserWindow({
