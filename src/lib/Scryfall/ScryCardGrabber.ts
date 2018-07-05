@@ -1,7 +1,7 @@
 import { CardGrabber } from '../CardGrabber'
 import { CardInfo } from '../CardInfo'
 import * as Scry from 'scryfall'
-import { Throttler } from '../Throttler';
+import { Throttler } from '../Throttler'
 
 /**
  * Grab card images using scryfall

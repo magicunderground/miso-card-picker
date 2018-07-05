@@ -1,6 +1,6 @@
 import { CardCompleter } from '../CardCompleter'
 import * as Scry from 'scryfall'
-import { Throttler } from '../Throttler';
+import { Throttler } from '../Throttler'
 
 /**
  * Card completer using scryfall
@@ -20,7 +20,7 @@ export class ScryCompleter implements CardCompleter {
      */
     autocomplete = async (name: string) => {
         if (this.cache.has(name)) {
-            return this.cache.get(name) || new Array<string>();
+            return this.cache.get(name) || new Array<string>()
         }
 
         return this.throttler.perform(async () => {
@@ -28,7 +28,7 @@ export class ScryCompleter implements CardCompleter {
                 this.cache.set(name, await Scry.autocomplete(name))
             }
 
-            return this.cache.get(name) || new Array<string>();
+            return this.cache.get(name) || new Array<string>()
         })
     }
 }

@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import { CardDisplay } from './components/CardDisplay'
 import { ScryCompleter } from './lib/Scryfall/ScryCompleter'
 import { ScryCardGrabber } from './lib/Scryfall/ScryCardGrabber'
-import { Throttler } from './lib/Throttler';
+import { Throttler } from './lib/Throttler'
 
 // Limit scryfall calls to 10 requests per second
 let throttler = new Throttler(10)
