@@ -19,6 +19,13 @@ export class ScryCardGrabber implements CardGrabber {
      * @param name Name of the card to retrieve the information on
      */
     getCard = async (name: string) => {
+        if (name == '') {
+            return {
+                name: '',
+                img_uri: ''
+            }
+        }
+
         if (this.cache.has(name)) {
             return this.cache.get(name) || { name: name, img_uri: '' }
         }

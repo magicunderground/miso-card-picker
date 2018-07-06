@@ -19,6 +19,10 @@ export class ScryCompleter implements CardCompleter {
      * @returns A list of cards that contain the partial name
      */
     autocomplete = async (name: string) => {
+        if (name == '') {
+            return new Array<string>()
+        }
+
         if (this.cache.has(name)) {
             return this.cache.get(name) || new Array<string>()
         }
