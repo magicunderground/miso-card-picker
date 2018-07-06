@@ -10,7 +10,7 @@ export interface CardPickerFormState {
     suggestions: string[]
 }
 
-export class CardPickerForm extends React.Component<CardPickerFormProps, CardPickerFormState>{
+export class CardPickerForm extends React.Component<CardPickerFormProps, CardPickerFormState> {
 
     constructor(props: any) {
         super(props)
