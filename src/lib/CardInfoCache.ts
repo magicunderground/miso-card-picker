@@ -29,7 +29,7 @@ export class CardInfoCache implements Cache<string, CardInfo> {
         let path = Path.join(this.rootDir, key + '.jpg')
 
         // Write out img
-        await File.writeFile(path, resp.body)
+        await File.writeFile(path, resp.body, { encoding: 'binary' })
 
         this.map.set(key, { name: value.name, img_uri: path })
 

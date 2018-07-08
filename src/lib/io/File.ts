@@ -15,7 +15,7 @@ export class File {
 
     static readFileSync = (path: fs.PathLike, options?: { encoding?: null; flag?: string } | undefined | null) => fs.readFileSync(path, options)
 
-    static writeFile = (path: fs.PathLike, data: any, options?: { encoding?: null; flag?: string } | undefined | null) => {
+    static writeFile = (path: fs.PathLike, data: any, options?: { encoding?: string | null; mode?: number | string; flag?: string; } | string | undefined | null) => {
         return new Promise<void>((resolve, reject) => {
             fs.writeFile(path, data, options, (err) => {
                 if (err) {
