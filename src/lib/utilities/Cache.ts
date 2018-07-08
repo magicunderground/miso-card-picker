@@ -5,14 +5,14 @@ export interface Cache<TKey, TValue> {
      * @param key
      * The key to check if there's an cache entry
      */
-    has: (key: TKey) => boolean
+    has: (key: TKey) => Promise<boolean>
 
     /**
      * Gets the value stored at the key
      * @param key
      * The key who's value to get
      */
-    get: (key: TKey) => Promise<TValue>
+    get: (key: TKey) => Promise<TValue | undefined>
 
     /**
      * Stores an item in the cache
@@ -21,5 +21,5 @@ export interface Cache<TKey, TValue> {
      * @param value
      * The value to store in the cache
      */
-    put: (key: TKey, value: TValue) => void 
+    put: (key: TKey, value: TValue) => Promise<TValue>
 }

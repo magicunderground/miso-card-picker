@@ -1,5 +1,5 @@
 import { ScryCardGrabber } from '../../../src/lib/Scryfall/ScryCardGrabber'
-import { Throttler } from '../../../src/lib/Throttler';
+import { Throttler } from '../../../src/lib/Throttler'
 import { expect } from 'chai'
 
 describe('when input is empty', () => {

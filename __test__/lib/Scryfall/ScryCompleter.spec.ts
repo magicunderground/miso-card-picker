@@ -1,5 +1,5 @@
 import { ScryCompleter } from '../../../src/lib/Scryfall/ScryCompleter'
-import { Throttler } from '../../../src/lib/Throttler';
+import { Throttler } from '../../../src/lib/Throttler'
 import { expect } from 'chai'
 
 describe('when input is empty', () => {
