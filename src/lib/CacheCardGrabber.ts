@@ -12,7 +12,7 @@ export class CacheCardGrabber implements CardGrabber {
     }
 
     getCard = async (name: string) => {
-        if (this.cache.has(name)) {
+        if (await this.cache.has(name)) {
             return await this.cache.get(name) || { name: '', img_uri: '' }
         } else {
             let info = await this.nonCache.getCard(name)
