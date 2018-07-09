@@ -14,7 +14,7 @@ export class CardInfoCache implements Cache<string, CardInfo> {
         this.index = Path.join(this.rootDir, 'index.dat')
 
         try {
-            this.map = JSON.parse(File.readFileSync(this.index).toString())
+            this.map = new Map<string, CardInfo>(JSON.parse(File.readFileSync(this.index).toString()))
         } catch (error) {
             this.map = new Map<string, CardInfo>()
         }
@@ -34,7 +34,7 @@ export class CardInfoCache implements Cache<string, CardInfo> {
         this.map.set(key, { name: value.name, img_uri: path })
 
         // Update index
-        await File.writeFile(this.index, JSON.stringify(this.map))
+        await File.writeFile(this.index, JSON.stringify([...this.map]))
 
         return this.map.get(key) || value
     }
