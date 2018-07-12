@@ -1,12 +1,12 @@
-import { CardGrabber } from './CardGrabber'
-import { Cache } from './utilities/Cache'
-import { CardInfo } from './CardInfo'
+import { ICardGrabber } from './ICardGrabber'
+import { ICache } from './utilities/ICache'
+import { ICardInfo } from './ICardInfo'
 
-export class CacheCardGrabber implements CardGrabber {
-    private nonCache: CardGrabber
-    private cache: Cache<string, CardInfo>
+export class CacheCardGrabber implements ICardGrabber {
+    private nonCache: ICardGrabber
+    private cache: ICache<string, ICardInfo>
 
-    constructor(nonCache: CardGrabber, cache: Cache<string, CardInfo>) {
+    constructor(nonCache: ICardGrabber, cache: ICache<string, ICardInfo>) {
         this.nonCache = nonCache
         this.cache = cache
     }

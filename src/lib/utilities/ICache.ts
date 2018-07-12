@@ -1,4 +1,4 @@
-export interface Cache<TKey, TValue> {
+export interface ICache<TKey, TValue> {
 
     /**
      * Checks if the cache has something stored

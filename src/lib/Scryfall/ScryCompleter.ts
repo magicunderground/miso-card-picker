@@ -1,11 +1,11 @@
-import { CardCompleter } from '../CardCompleter'
+import { ICardCompleter } from '../ICardCompleter'
 import * as Scry from 'scryfall'
 import { Throttler } from '../Throttler'
 
 /**
  * Card completer using scryfall
  */
-export class ScryCompleter implements CardCompleter {
+export class ScryCompleter implements ICardCompleter {
     private cache = new Map<string, string[]>()
     private throttler: Throttler
 

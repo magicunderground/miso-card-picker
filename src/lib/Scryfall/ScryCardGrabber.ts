@@ -1,13 +1,13 @@
-import { CardGrabber } from '../CardGrabber'
-import { CardInfo } from '../CardInfo'
+import { ICardGrabber } from '../ICardGrabber'
+import { ICardInfo } from '../ICardInfo'
 import * as Scry from 'scryfall'
 import { Throttler } from '../Throttler'
 
 /**
  * Grab card images using scryfall
  */
-export class ScryCardGrabber implements CardGrabber {
-    private cache = new Map<string, CardInfo>()
+export class ScryCardGrabber implements ICardGrabber {
+    private cache = new Map<string, ICardInfo>()
     private throttler: Throttler
 
     constructor(throttler: Throttler) {
