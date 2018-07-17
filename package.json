@@ -11,6 +11,8 @@
     "test": "jest"
   },
   "jest": {
+    "coverageDirectory": "./coverage",
+    "collectCoverage": true,
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
