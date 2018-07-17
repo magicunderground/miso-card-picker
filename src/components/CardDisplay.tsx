@@ -2,16 +2,16 @@ import * as React from 'react'
 
 import { Card } from './Card'
 import { CardPickerForm } from './CardPickerForm'
-import { CardInfo } from '../lib/CardInfo'
+import { ICardInfo } from '../lib/ICardInfo'
 
 export interface CardDisplayProps {
-    getCard: (cardName: string) => Promise<CardInfo>
+    getCard: (cardName: string) => Promise<ICardInfo>
     autocomplete: (value: string) => Promise<string[]>
-    onSubmit?: (card: CardInfo) => Promise<void>
+    onSubmit?: (card: ICardInfo) => Promise<void>
 }
 
 export interface CardDisplayState {
-    currentCard: CardInfo
+    currentCard: ICardInfo
 }
 
 export class CardDisplay extends React.Component<CardDisplayProps, CardDisplayState> {
