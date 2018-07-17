@@ -6,6 +6,7 @@ import { shallow } from 'enzyme'
 import * as enzyme from 'enzyme'
 import * as Adapter from 'enzyme-adapter-react-16'
 import * as chaiEnzyme from 'chai-enzyme'
+import { AsyncResource } from 'async_hooks';
 
 chai.use(chaiEnzyme())
 enzyme.configure({ adapter: new Adapter() })
@@ -35,5 +36,25 @@ describe('when a name is typed', () => {
         options.forEach((option, index) => {
             expect(option.key()).to.eq(index.toLocaleString())
         })
+    })
+})
+
+describe('when form is submitted', () => {
+    it('should call the callback', async () => {
+        let completer = async (name: string) => {
+            return new Array<string>(name)
+        }
+
+        let wasSubmitted = false
+        let submitter = (name: string) => {
+            wasSubmitted = true
+        }
+
+        let component = shallow(<CardPickerForm autocomplete={completer} onSubmit={submitter} />)
+        component.find('form').simulate('submit', { preventDefault: () => {} })
+
+        await switchContext()
+
+        expect(wasSubmitted).to.be.true
     })
 })
