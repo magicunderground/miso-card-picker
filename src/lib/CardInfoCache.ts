@@ -28,13 +28,17 @@ export class CardInfoCache implements ICache<string, ICardInfo> {
         let resp = await Request.get(value.img_uri, { encoding: 'binary' })
         let path = Path.join(this.rootDir, key + '.jpg')
 
-        // Write out img
-        await File.writeFile(path, resp.body, { encoding: 'binary' })
+        try {
+            // Write out img
+            await File.writeFile(path, resp.body, { encoding: 'binary' })
 
-        this.map.set(key, { name: value.name, img_uri: path })
+            this.map.set(key, { name: value.name, img_uri: path })
 
-        // Update index
-        await File.writeFile(this.index, JSON.stringify([...this.map]))
+            // Update index
+            await File.writeFile(this.index, JSON.stringify([...this.map]))
+        } catch {
+            // todo: log error
+        }
 
         return this.map.get(key) || value
     }
